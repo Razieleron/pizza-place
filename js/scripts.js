@@ -43,15 +43,46 @@ function calculateSize() {
   pizza.size = size
 }
 function calculateToppings() {
-  if (document.getElementById("cheese").checked=true) {
-    pizza.toppings.push("cheese");
+  if (document.getElementById("cheese").checked = true){
+  pizza.toppings.push("cheese");
+  }
+  if (document.getElementById("pepperoni").checked = true) {
+    pizza.toppings.push("pepperoni");
+  }
+  if (document.getElementById("sausage").checked = true) {
+    pizza.toppings.push("sausage");
+  }
+  if (document.getElementById("mushrooms").checked = true) {
+    pizza.toppings.push("mushrooms")
   }
 }
+function displayCost() {
+  let price = 0
+  let toppingPrice = 0
+  let totalPrice = 0
+  if (pizza.size = "small") {
+    price = 10
+  }
+  if (pizza.size = "medium") {
+    price = 15
+  }
+  if (pizza.size = "large") {
+    price = 20
+  }
+  toppingPrice = pizza.toppings[i];
+  totalPrice = price + toppingPrice
+  document.getElementById("cost").innerText = totalPrice
+
+  
+}
+
+
 
 
 window.addEventListener("load", function (){
   document.querySelector(".btn-submit").addEventListener("click", function() {
     calculateToppings();
+    calculateSize();
 
   });
 });
