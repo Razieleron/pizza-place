@@ -7,13 +7,11 @@
   <body>
     <h1>Welcome to our Pizza Ordering Website</h1>
     <form>
-      <label for="size">Select a size:</label>
-      <select id="size" name="size">
-        <option id="small" value="small">Small</option>
-        <option id="medium" value="medium">Medium</option>
-        <option id="large" value="large">Large</option>
-      </select>
-      <br>
+    
+      <label><input type="radio" id="small" name="sizeRadio" value="small">Small</label>
+      <label><input type="radio" id="medium" name="sizeRadio" value="medium">Medium</label>
+      <label><input type="radio" id="large" name="sizeRadio" value="large">Large</label>
+      <br><br>
       <label for="toppings">Select toppings:</label>
       <br>
       <input type="checkbox" name="toppings" id="cheese" value="cheese">Cheese<br>
@@ -25,6 +23,6 @@
       <br>
       <p id="cost"></p>
     </form>
-    <script src="pizza.js"></script>
+    
   </body>
 </html>

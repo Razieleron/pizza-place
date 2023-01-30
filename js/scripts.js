@@ -2,87 +2,102 @@
 function Pizza(size, toppings) {
   this.size = size;
   this.toppings = [];
+
 }
 
-Pizza.prototype.sizeCost = function() {
-  if (size = "Small") {
+Pizza.prototype.sizeCostCalculate = function() {
+  let pizzaSizePrice = 0
+  if (this.size === "small") {
     pizzaSizePrice = 10;
   }
-  if (size = "Medium") {
+  else if (this.size === "medium") {
     pizzaSizePrice = 15;
   }
-  if (size = "Large") {
+  else if (this.size === "large") {
     pizzaSizePrice = 20;
   }
+  this.sizeCost = pizzaSizePrice;
 }
 
-Pizza.prototype.toppingCost = function() {
+Pizza.prototype.toppingCostCalculate = function() {
   let totalToppingPrice = 0
   let toppingPrice = 1
   let smallToppingPrice = 1
   let mediumToppingPrice = 2
   let largeToppingPrice = 3
   let numberOfToppings = this.toppings.length;
-  if (this.size = "Small") {
+  
+  if (this.size === "small") {
     totalToppingPrice = (numberOfToppings * toppingPrice) * smallToppingPrice;
   }
-  if (this.size = "Medium") {
+  else if (this.size === "medium") {
     totalToppingPrice = (numberOfToppings * toppingPrice) * mediumToppingPrice;
   }
-  if (this.size = "Large") {
-    totalToppingPrice = (numberOfTopping * toppingPrice) * mediumToppingPrice;
+  else if (this.size === "large") {
+    totalToppingPrice = (numberOfToppings * toppingPrice) * largeToppingPrice;
   }
+  this.toppingCost = totalToppingPrice;
 }
+
+Pizza.prototype.totalCostCalculate = function() {
+  this.totalCost = this.toppingCost + this.sizeCost;
+}
+
 
 // User Interface Logic
 
 let pizza = new Pizza();
 
 function calculateSize() {
-  size = document.getElementById("size").value;
-  pizza.size = size
+  if (document.getElementById("small").checked === true) {
+    pizza.size = "small"
+  }
+  else if (document.getElementById("medium").checked === true) {
+    pizza.size = "medium"
+  }
+  else if (document.getElementById("large").checked === true) {
+    pizza.size = "large"
+  }
+  else (alert("Please choose a size"))
+  console.log(pizza.size);
+  console.log(pizza.size);
 }
 function calculateToppings() {
-  if (document.getElementById("cheese").checked = true){
-  pizza.toppings.push("cheese");
-  }
-  if (document.getElementById("pepperoni").checked = true) {
-    pizza.toppings.push("pepperoni");
-  }
-  if (document.getElementById("sausage").checked = true) {
-    pizza.toppings.push("sausage");
-  }
-  if (document.getElementById("mushrooms").checked = true) {
+  if (document.getElementById("cheese").checked === true){
+    if (!pizza.toppings.includes("cheese")) {
+      pizza.toppings.push("cheese");
+      } 
+    }
+  if (document.getElementById("pepperoni").checked === true) {
+    if (!pizza.toppings.includes("pepperoni")) {
+      pizza.toppings.push("pepperoni");
+      }
+    }
+  if (document.getElementById("sausage").checked === true) {
+    if (!pizza.toppings.includes("sausage")) {
+      pizza.toppings.push("sausage");
+      }
+    }
+  if (document.getElementById("mushrooms").checked === true) {
+    if (!pizza.toppings.includes("mushrooms")) {
     pizza.toppings.push("mushrooms")
+    }
   }
-}
+};
+
 function displayCost() {
-  let price = 0
-  let toppingPrice = 0
-  let totalPrice = 0
-  if (pizza.size = "small") {
-    price = 10
-  }
-  if (pizza.size = "medium") {
-    price = 15
-  }
-  if (pizza.size = "large") {
-    price = 20
-  }
-  toppingPrice = pizza.toppings[i];
-  totalPrice = price + toppingPrice
-  document.getElementById("cost").innerText = totalPrice
-
-  
+  pizza.sizeCostCalculate();
+  pizza.toppingCostCalculate();
+  pizza.totalCostCalculate();
+  document.getElementById("cost").innerText = pizza.totalCost;
 }
-
 
 
 
 window.addEventListener("load", function (){
   document.querySelector(".btn-submit").addEventListener("click", function() {
-    calculateToppings();
     calculateSize();
-
+    calculateToppings();
+    displayCost();
   });
 });
